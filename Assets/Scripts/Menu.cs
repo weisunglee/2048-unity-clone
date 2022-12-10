@@ -7,6 +7,7 @@ public class Menu : MonoBehaviour
 {
     private AudioSource audioSource;
     private Animator textAnimation;
+    private Animator fadeAnimation;
     [SerializeField] AudioClip startGameSound;
 
     void Start()
@@ -14,7 +15,8 @@ public class Menu : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.Play();
 
-        textAnimation = gameObject.GetComponentInChildren<Animator>();        
+        textAnimation = gameObject.transform.Find("Text").GetComponent<Animator>();
+        fadeAnimation = gameObject.transform.Find("Fade").GetComponent<Animator>();
     }
 
     private IEnumerator WaitForSceneLoad()
@@ -30,6 +32,7 @@ public class Menu : MonoBehaviour
         if (Input.anyKeyDown)
         {            
             textAnimation.SetTrigger("Pressed");
+            fadeAnimation.SetTrigger("StartFadeOut");
             audioSource.PlayOneShot(startGameSound);
             StartCoroutine(WaitForSceneLoad());
         }
