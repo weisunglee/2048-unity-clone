@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private UnityEvent gameOverEvent;
     [SerializeField] private UnityEvent winGameEvent;
     [SerializeField] private UnityEvent<int> updateScoreEvent;
+    [SerializeField] private UnityEvent moveTileEvent;
     [SerializeField] private Color32[] tileBackgroundColor;
     [SerializeField] private Color32[] tileTextColor;
     const int targetScore = 2048;
@@ -25,7 +26,7 @@ public class GameController : MonoBehaviour
     }
     
     private void Update()
-    {
+    {        
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {            
             MoveUp();
@@ -122,6 +123,11 @@ public class GameController : MonoBehaviour
             MoveUp(cells[i]);
         }
 
+        if (isMoved)
+        {
+            moveTileEvent.Invoke();
+        }
+
         CheckGameOver();
         SpawnNewTile();
     }
@@ -131,7 +137,12 @@ public class GameController : MonoBehaviour
         for (int i = cells.Length-1; i >= 0; --i)
         {
             MoveDown(cells[i]);
-        }       
+        }
+
+        if (isMoved)
+        {
+            moveTileEvent.Invoke();
+        }
 
         CheckGameOver();
         SpawnNewTile();
@@ -144,6 +155,11 @@ public class GameController : MonoBehaviour
             MoveLeft(cells[i]);
         }
 
+        if (isMoved)
+        {
+            moveTileEvent.Invoke();
+        }
+
         CheckGameOver();
         SpawnNewTile();
     }
@@ -153,6 +169,11 @@ public class GameController : MonoBehaviour
         for (int i = cells.Length - 1; i >= 0; --i)
         {
             MoveRight(cells[i]);
+        }
+
+        if (isMoved)
+        {
+            moveTileEvent.Invoke();
         }
 
         CheckGameOver();
