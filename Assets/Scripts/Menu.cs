@@ -23,7 +23,7 @@ public class Menu : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         audioSource.Stop();
-        SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("StoryScene", LoadSceneMode.Single);
     }    
 
     // Update is called once per frame
