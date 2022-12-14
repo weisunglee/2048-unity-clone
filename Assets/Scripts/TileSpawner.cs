@@ -10,7 +10,7 @@ public class TileSpawner : MonoBehaviour
     [SerializeField] private Transform[] cellTransforms;
     [SerializeField] private UnityEvent<int, Tile> tileSpawned;
 
-    private const float number2Chance = 0.6f;        
+    private const float number2Chance = 0.9f;        
     
     private int GenerateNumber()
     {
