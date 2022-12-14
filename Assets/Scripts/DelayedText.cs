@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class DelayedText : MonoBehaviour
 {
     private Text text;
-    private string leadingChar = "_";
     private string fullString;
     private AudioSource audioSource;
+    private const float delayTime = 0.05f;
 
     [SerializeField] AudioClip typingSound;
 
@@ -26,23 +26,19 @@ public class DelayedText : MonoBehaviour
 
     IEnumerator PrintDelayedText()
     {
-        text.text = leadingChar;
-
         yield return new WaitForSeconds(1);
 
-        foreach (char c in fullString)
+        for (int i = 0; i < fullString.Length; ++i)
         {
-            if (text.text.Length > 0)
-            {
-                text.text = text.text.Substring(0, text.text.Length - leadingChar.Length);
-            }
-            text.text += c;
-            text.text += leadingChar;
+            string newText = fullString.Substring(0, i);
+            newText += "<color=#00000000>" + fullString.Substring(i) + "</color>";
+            text.text = newText;
+
             audioSource.PlayOneShot(typingSound, 0.1f);
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(delayTime);
         }
-                
-        text.text = text.text.Substring(0, text.text.Length - leadingChar.Length);        
+
+        text.text = fullString;
     }
 }
