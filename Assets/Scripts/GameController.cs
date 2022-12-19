@@ -43,6 +43,10 @@ public class GameController : MonoBehaviour
         {            
             MoveRight();
         }        
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            winGameEvent.Invoke();
+        }
     }
 
     private void PaintTile(Tile tile)

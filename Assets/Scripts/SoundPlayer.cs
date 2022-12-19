@@ -9,7 +9,7 @@ public class SoundPlayer : MonoBehaviour
     [SerializeField] AudioClip gameOverSound;
     [SerializeField] AudioClip winSound;
 
-    private const float volume = 0.7f;
+    private const float volume = 0.3f;
 
     public void PlayMoveSound()
     {     

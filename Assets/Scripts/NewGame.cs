@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NewGame : MonoBehaviour
+public class NewGame : VisibilityController
 {
-    public void Show()
-    {
-        gameObject.SetActive(true);
+    public void PauseGame()
+    {        
         Time.timeScale = 0;
     }
 
-    public void Hide()
-    {
-        gameObject.SetActive(false);
+    public void ResumeGame()
+    {        
         Time.timeScale = 1;
     }
 
@@ -21,5 +19,6 @@ public class NewGame : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
         Hide();
+        ResumeGame();
     }
 }
